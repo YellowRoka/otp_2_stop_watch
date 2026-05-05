@@ -1,0 +1,4 @@
+enum StopwatchDisplayModeEnum {
+  digital,
+  analog,
+}

@@ -1,0 +1,158 @@
+<mxfile host="65bd71144e">
+    <diagram id="otp2-latest-architecture" name="OTP2 Latest Architecture">
+        <mxGraphModel dx="2127" dy="1597" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="OTP2 Stopwatch - aktuális architektúra&#xa;Pragmatikus feature/module struktúra: UI + Business + System + DI" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=26;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="430" y="30" width="940" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="main" value="lib/main.dart&#xa;App bootstrap&#xa;- setupDependencies()&#xa;- MaterialApp.router&#xa;- AppTheme.light&#xa;- AppRouter.router" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="735" y="140" width="330" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="di_group" value="lib/di" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=16;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1290" y="125" width="390" height="265" as="geometry"/>
+                </mxCell>
+                <mxCell id="di_injection" value="injection.dart&#xa;@InjectableInit&#xa;getIt.init()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE5CD;strokeColor=#D79B00;fontSize=13;fontStyle=1" parent="di_group" vertex="1">
+                    <mxGeometry x="35" y="55" width="320" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="di_config" value="injection.config.dart&#xa;generált regisztrációk&#xa;- StopWatchDataSource&#xa;- StopwatchEngine&#xa;- StopwatchRepositoryImpl&#xa;- use case-ek&#xa;- StopwatchBloc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE5CD;strokeColor=#D79B00;fontSize=13" parent="di_group" vertex="1">
+                    <mxGeometry x="35" y="145" width="320" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="system_group" value="lib/system" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=16;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="70" y="320" width="430" height="630" as="geometry"/>
+                </mxCell>
+                <mxCell id="routes" value="navigation/routes.dart&#xa;AppRouter / GoRouter&#xa;- initialLocation: /&#xa;- splash route&#xa;- stopwatch route&#xa;- errorBuilder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#6C8EBF;fontSize=13;fontStyle=1" parent="system_group" vertex="1">
+                    <mxGeometry x="45" y="60" width="340" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="theme" value="theme/app_theme.dart&#xa;AppTheme.light&#xa;- Material 3&#xa;- ColorScheme seed&#xa;- CardTheme&#xa;- ElevatedButtonTheme" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#6C8EBF;fontSize=13" parent="system_group" vertex="1">
+                    <mxGeometry x="45" y="200" width="340" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="constants" value="utils/app_constants.dart&#xa;Magic string / int / double / Duration értékek&#xa;- route pathok&#xa;- labelök&#xa;- UI méretek&#xa;- stopper tick&#xa;- analóg rajzolási konstansok" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#6C8EBF;fontSize=13" parent="system_group" vertex="1">
+                    <mxGeometry x="45" y="340" width="340" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="utils/duration_ext.dart&#xa;Duration.toDurationDisplay()&#xa;mm:ss:cc" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF2FF;strokeColor=#6C8EBF;fontSize=13" vertex="1" parent="system_group">
+                    <mxGeometry x="45" y="500" width="280" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_group" value="lib/ui" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=16;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="565" y="320" width="625" height="700" as="geometry"/>
+                </mxCell>
+                <mxCell id="splash_view" value="splash_page/splash_view.dart&#xa;SplashView&#xa;- 2 mp Timer&#xa;- context.go(&#39;/stopwatch&#39;)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F6E7;strokeColor=#82B366;fontSize=13" parent="ui_group" vertex="1">
+                    <mxGeometry x="35" y="60" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="error_view" value="error_page/error_view.dart&#xa;ErrorView&#xa;- router errorBuilder használja" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F6E7;strokeColor=#82B366;fontSize=13" parent="ui_group" vertex="1">
+                    <mxGeometry x="340" y="60" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="stopwatch_view" value="stop_watch_page/stopwatch_view.dart&#xa;StopwatchView&#xa;- BlocProvider(getIt&lt;StopwatchBloc&gt;)&#xa;- BlocBuilder&#xa;- displayMode alapján digital/analog UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F6E7;strokeColor=#82B366;fontSize=13;fontStyle=1" parent="ui_group" vertex="1">
+                    <mxGeometry x="130" y="180" width="365" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="parts" value="parts/&#xa;UI komponensek&#xa;- DisplayModeSwitch&#xa;- WatchControlButtons&#xa;- DigitalStopwatchDisplay&#xa;- AnalogStopwatchDisplay&#xa;- LapsList&#xa;- TimeDisplay&#xa;- StopperButton" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FFF0;strokeColor=#82B366;fontSize=13" parent="ui_group" vertex="1">
+                    <mxGeometry x="35" y="335" width="195" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="bloc" value="bloc/StopwatchBloc&#xa;@injectable&#xa;Eventek: start, pause, reset, recordLap, snapshotUpdated, displayModeChanged&#xa;State: egyetlen Freezed state&#xa;- status&#xa;- snapshot&#xa;- displayMode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DFF0D8;strokeColor=#82B366;fontSize=13;fontStyle=1" parent="ui_group" vertex="1">
+                    <mxGeometry x="325" y="335" width="265" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="state_enums" value="bloc/state_enums/&#xa;- StopwatchDisplayModeEnum&#xa;  digital / analog&#xa;- StopwatchStatusEnum&#xa;  initial / running / paused" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FFF0;strokeColor=#82B366;fontSize=13" parent="ui_group" vertex="1">
+                    <mxGeometry x="325" y="570" width="265" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="generated_bloc" value="Freezed generált fájlok&#xa;- stopwatch_event.freezed.dart&#xa;- stopwatch_state.freezed.dart" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FFF0;strokeColor=#82B366;fontSize=13;dashed=1" parent="ui_group" vertex="1">
+                    <mxGeometry x="35" y="580" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_view_parts" value="komponál" style="endArrow=block;html=1;rounded=0;strokeColor=#82B366" parent="ui_group" source="stopwatch_view" target="parts" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_view_bloc" value="BlocProvider / BlocBuilder" style="endArrow=block;html=1;rounded=0;strokeColor=#82B366;strokeWidth=2" parent="ui_group" source="stopwatch_view" target="bloc" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_parts_bloc" value="events" style="endArrow=block;html=1;rounded=0;strokeColor=#82B366" parent="ui_group" source="parts" target="bloc" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_bloc_enums" value="használja" style="endArrow=block;html=1;rounded=0;strokeColor=#82B366;dashed=1" parent="ui_group" source="bloc" target="state_enums" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="business_group" value="lib/business" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=16;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="1260" y="455" width="490" height="705" as="geometry"/>
+                </mxCell>
+                <mxCell id="usecases" value="usecases/&#xa;Vékony command réteg&#xa;- StartStopwatchUseCase&#xa;- PauseStopwatchUseCase&#xa;- ResetStopwatchUseCase&#xa;- RecordLapUseCase" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3EAF7;strokeColor=#9673A6;fontSize=13;fontStyle=1" parent="business_group" vertex="1">
+                    <mxGeometry x="45" y="55" width="380" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="repo" value="repositories/&#xa;StopwatchRepository interface&#xa;StopwatchRepositoryImpl&#xa;@LazySingleton(as: StopwatchRepository)&#xa;- startTimer&#xa;- pauseTimer&#xa;- stopTimer&#xa;- recordLap&#xa;- stopwatchSnapshotStream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3EAF7;strokeColor=#9673A6;fontSize=13;fontStyle=1" parent="business_group" vertex="1">
+                    <mxGeometry x="45" y="190" width="380" height="145" as="geometry"/>
+                </mxCell>
+                <mxCell id="engine" value="services/stopwatch_engine.dart&#xa;StopwatchEngine&#xa;@lazySingleton&#xa;- timer Stream.periodic(10ms)&#xa;- start / pause / stop / recordLap&#xa;- Rx.combineLatest3 snapshotStream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3EAF7;strokeColor=#9673A6;fontSize=13;fontStyle=1" parent="business_group" vertex="1">
+                    <mxGeometry x="45" y="365" width="380" height="105" as="geometry"/>
+                </mxCell>
+                <mxCell id="datasource" value="data_sources/local/&#xa;StopWatchDataSource&#xa;@lazySingleton&#xa;BehaviorSubjectek:&#xa;- elapsedTime&#xa;- isRunning&#xa;- laps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3EAF7;strokeColor=#9673A6;fontSize=13" parent="business_group" vertex="1">
+                    <mxGeometry x="45" y="550" width="185" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="model" value="models/stopwatch_snapshot.dart&#xa;StopwatchSnapshot&#xa;- elapsedTime&#xa;- laps&#xa;- isRunning&#xa;- initial()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3EAF7;strokeColor=#9673A6;fontSize=13" parent="business_group" vertex="1">
+                    <mxGeometry x="250" y="550" width="200" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_usecases_repo" value="hívja" style="endArrow=block;html=1;rounded=0;strokeColor=#9673A6;strokeWidth=2" parent="business_group" source="usecases" target="repo" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_repo_engine" value="delegál" style="endArrow=block;html=1;rounded=0;strokeColor=#9673A6;strokeWidth=2" parent="business_group" source="repo" target="engine" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_engine_datasource" value="ír / olvas" style="endArrow=block;html=1;rounded=0;strokeColor=#9673A6;strokeWidth=2" parent="business_group" source="engine" target="datasource" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_engine_model" value="épít" style="endArrow=block;html=1;rounded=0;strokeColor=#9673A6;strokeWidth=2;dashed=1" parent="business_group" source="engine" target="model" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="tests_group" value="test/" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#F5F5F5;strokeColor=#666666;fontSize=16;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="20" y="980" width="430" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="engine_tests" value="business/stopwatch_engine_test.dart&#xa;- start&#xa;- pause&#xa;- stop&#xa;- repeated start&#xa;- record lap" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontSize=13" parent="tests_group" vertex="1">
+                    <mxGeometry x="10" y="55" width="220" height="135" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_tests" value="ui/stopwatch_view_test.dart&#xa;- DI kézi setup&#xa;- gombok&#xa;- start/pause/reset&#xa;- lap rögzítés" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontSize=13" parent="tests_group" vertex="1">
+                    <mxGeometry x="250" y="55" width="170" height="95" as="geometry"/>
+                </mxCell>
+                <mxCell id="note" value="Áramlás röviden:&#xa;UI event -&gt; StopwatchBloc -&gt; UseCase -&gt; Repository -&gt; StopwatchEngine -&gt; DataSource&#xa;DataSource stream -&gt; Engine snapshotStream -&gt; Repository -&gt; Bloc snapshotUpdated -&gt; UI rebuild&#xa;Display mode csak a Bloc state-ben él." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=14" parent="1" vertex="1">
+                    <mxGeometry x="480" y="1100" width="760" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_main_di" value="init" style="endArrow=block;html=1;rounded=0;strokeColor=#B85450;strokeWidth=2" parent="1" source="main" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1290" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_main_system" value="theme + router" style="endArrow=block;html=1;rounded=0;strokeColor=#6C8EBF;strokeWidth=2" parent="1" source="main" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="320" y="200"/>
+                        </Array>
+                        <mxPoint x="320" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_routes_ui" value="route builder" style="endArrow=block;html=1;rounded=0;strokeColor=#82B366;strokeWidth=2" parent="1" source="routes" target="ui_group" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_bloc_usecases" value="commands" style="endArrow=block;html=1;rounded=0;strokeColor=#9673A6;strokeWidth=2;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="bloc" target="usecases" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_bloc_repo_stream" value="snapshot stream" style="endArrow=block;html=1;rounded=0;strokeColor=#9673A6;strokeWidth=2;dashed=1" parent="1" source="repo" target="bloc" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_di_ui" value="injektálja" style="endArrow=block;html=1;rounded=0;strokeColor=#B85450;dashed=1;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="di_group" target="bloc" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_di_business" value="regisztrálja" style="endArrow=block;html=1;rounded=0;strokeColor=#B85450;dashed=1" parent="1" source="di_group" target="business_group" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_constants_all" value="shared constants" style="endArrow=block;html=1;rounded=0;strokeColor=#6C8EBF;dashed=1" parent="1" source="constants" target="ui_group" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_constants_business" value="tick + format constants" style="endArrow=block;html=1;rounded=0;strokeColor=#6C8EBF;dashed=1" parent="1" source="constants" target="business_group" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="520" y="850"/>
+                            <mxPoint x="870" y="850"/>
+                            <mxPoint x="1260" y="850"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

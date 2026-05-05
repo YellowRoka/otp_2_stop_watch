@@ -106,6 +106,17 @@ unlinked_spec.ds
 
 # Coverage
 coverage/
+.VSCodeCounter
+ios/
+web/
+android/
+linux/
+windows/
+macos/
+
+# Generated
+**/*.g.dart
+**/*.freezed.dart
 
 # Symbols
 app.*.symbols
