@@ -66,7 +66,11 @@ UI event
   -> UI rebuild
 ```
 
-Az aktuális architektúra draw.io ábrája itt található:
+Az aktuális architektúra:
+
+![OTP Stopwatch Architecture](docs/latest_architecture.png)
+
+A draw.io forrás fájl:
 
 [docs/latest_architecture.drawio](docs/latest_architecture.drawio)
 
